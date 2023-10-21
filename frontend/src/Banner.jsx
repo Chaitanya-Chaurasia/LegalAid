@@ -10,7 +10,7 @@ function Banner(){
                 <Text fontStyle={'italic'} fontSize={'20px'}>Daniel Chen</Text>
             </Flex>
             <Image src={Logo} alt="LegalAid Logo" height={'60px'}/>
-            <Flex alignItems={'flex-end'} >
+            <Flex alignItems={'flex-end'}>
                 <Heading size="3xl" fontWeight={'Bold'} as={'h1'}>L</Heading>
                 <Heading size="2xl" fontWeight={'Bold'} >EGAL</Heading>
                 <Heading size="3xl" fontWeight={'Bold'} color={'#213A83'}>AI</Heading>
