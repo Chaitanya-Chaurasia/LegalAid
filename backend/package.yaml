@@ -1,0 +1,10 @@
+dependencies: numpy
+  kfp
+  typing
+  re
+  PyPDF2
+  google.cloud
+  google.api_core.client_options
+  vertexai.language_models
+  elasticsearch
+  virtualenv
