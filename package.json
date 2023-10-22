@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.py",
   "scripts": {
-    "test": "python /backend/app.py"
+    "backend": "python backend/app.py",
+    "frontend": "npm run dev --prefix frontend"
   },
   "author": "",
   "license": "ISC"
