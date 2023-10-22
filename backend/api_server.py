@@ -6,6 +6,8 @@ from vertexai.preview.language_models import TextGenerationModel
 
 import requests
 from flask import Flask, session, abort, redirect, request, jsonify
+from flask_cors import CORS
+
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
@@ -24,6 +26,8 @@ with open('config/package.yaml', 'r') as file:
     map_api_key = yaml.safe_load(file)['GOOGLE_MAPS_API_KEY']
 
 app = Flask("Backend API Server")
+CORS(app)
+
 app.secret_key = oauth_client_secret # make sure this matches with that's in client_secret.json
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
