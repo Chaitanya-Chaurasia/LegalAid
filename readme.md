@@ -8,7 +8,10 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 
 ☁️ **LegalAId was made possible thanks to Google Cloud** ☁️
 
-![LegalAId Logo](assets/gcp.png){width=50%}
+<div style="text-align: center;">
+  <p>☁️ <strong>LegalAId was made possible thanks to Google Cloud</strong> ☁️</p>
+  <img src="assets/gcp.png" alt="LegalAId Logo" width="50%">
+</div>
 
 ## Key Features
 
