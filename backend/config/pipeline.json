@@ -1,0 +1,406 @@
+{
+  "components": {
+    "comp-for-loop-1": {
+      "dag": {
+        "tasks": {
+          "for-loop-2": {
+            "componentRef": {
+              "name": "comp-for-loop-2"
+            },
+            "dependentTasks": [
+              "split-pdf-into-pages"
+            ],
+            "inputs": {
+              "parameters": {
+                "pipelinechannel--split-pdf-into-pages-Output": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "Output",
+                    "producerTask": "split-pdf-into-pages"
+                  }
+                }
+              }
+            },
+            "iteratorPolicy": {
+              "parallelismLimit": 3
+            },
+            "parameterIterator": {
+              "itemInput": "pipelinechannel--split-pdf-into-pages-Output-loop-item",
+              "items": {
+                "inputParameter": "pipelinechannel--split-pdf-into-pages-Output"
+              }
+            },
+            "taskInfo": {
+              "name": "pdf-page-parsing"
+            }
+          },
+          "split-pdf-into-pages": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-split-pdf-into-pages"
+            },
+            "inputs": {
+              "parameters": {
+                "pdf_file": {
+                  "componentInputParameter": "pipelinechannel--get-matching-files-Output-loop-item"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "split-pdf-into-pages"
+            }
+          }
+        }
+      },
+      "inputDefinitions": {
+        "parameters": {
+          "pipelinechannel--get-matching-files-Output": {
+            "parameterType": "LIST"
+          },
+          "pipelinechannel--get-matching-files-Output-loop-item": {
+            "parameterType": "STRING"
+          }
+        }
+      }
+    },
+    "comp-for-loop-2": {
+      "dag": {
+        "tasks": {
+          "generate-embedding": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-generate-embedding"
+            },
+            "dependentTasks": [
+              "parse-text"
+            ],
+            "inputs": {
+              "parameters": {
+                "txt_file": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "Output",
+                    "producerTask": "parse-text"
+                  }
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "generate-embedding"
+            }
+          },
+          "parse-text": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-parse-text"
+            },
+            "inputs": {
+              "parameters": {
+                "pdf_file": {
+                  "componentInputParameter": "pipelinechannel--split-pdf-into-pages-Output-loop-item"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "parse-text"
+            }
+          },
+          "write-embeddings": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-write-embeddings"
+            },
+            "dependentTasks": [
+              "generate-embedding"
+            ],
+            "inputs": {
+              "parameters": {
+                "embedding": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "Output",
+                    "producerTask": "generate-embedding"
+                  }
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "write-embeddings"
+            }
+          }
+        }
+      },
+      "inputDefinitions": {
+        "parameters": {
+          "pipelinechannel--split-pdf-into-pages-Output": {
+            "parameterType": "LIST"
+          },
+          "pipelinechannel--split-pdf-into-pages-Output-loop-item": {
+            "parameterType": "STRING"
+          }
+        }
+      }
+    },
+    "comp-generate-embedding": {
+      "executorLabel": "exec-generate-embedding",
+      "inputDefinitions": {
+        "parameters": {
+          "txt_file": {
+            "parameterType": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "parameters": {
+          "Output": {
+            "parameterType": "STRUCT"
+          }
+        }
+      }
+    },
+    "comp-get-matching-files": {
+      "executorLabel": "exec-get-matching-files",
+      "inputDefinitions": {
+        "parameters": {
+          "directory": {
+            "parameterType": "STRING"
+          },
+          "pattern": {
+            "parameterType": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "parameters": {
+          "Output": {
+            "parameterType": "LIST"
+          }
+        }
+      }
+    },
+    "comp-parse-text": {
+      "executorLabel": "exec-parse-text",
+      "inputDefinitions": {
+        "parameters": {
+          "pdf_file": {
+            "parameterType": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "parameters": {
+          "Output": {
+            "parameterType": "STRING"
+          }
+        }
+      }
+    },
+    "comp-split-pdf-into-pages": {
+      "executorLabel": "exec-split-pdf-into-pages",
+      "inputDefinitions": {
+        "parameters": {
+          "pdf_file": {
+            "parameterType": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "parameters": {
+          "Output": {
+            "parameterType": "LIST"
+          }
+        }
+      }
+    },
+    "comp-write-embeddings": {
+      "executorLabel": "exec-write-embeddings",
+      "inputDefinitions": {
+        "parameters": {
+          "embedding": {
+            "parameterType": "STRUCT"
+          }
+        }
+      }
+    }
+  },
+  "deploymentSpec": {
+    "executors": {
+      "exec-generate-embedding": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "generate_embedding"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.3.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"'  &&  python3 -m pip install --quiet --no-warn-script-location 'google-cloud-aiplatform' 'appengine-python-standard' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef generate_embedding(txt_file: str) -> Dict:\n    from vertexai.language_models import TextEmbeddingModel\n\n    model = TextEmbeddingModel.from_pretrained(\"textembedding-gecko@001\")\n\n    with open(txt_file.replace(\"gs://\", \"/gcs/\"), 'r') as f:\n        text = f.read()\n        embeddings = model.get_embeddings([text])\n        embedding = embeddings[0].values\n\n    return {\"id\": txt_file, \"embedding\": embedding}\n\n"
+          ],
+          "image": "python:3.11"
+        }
+      },
+      "exec-get-matching-files": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "get_matching_files"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.3.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"'  &&  python3 -m pip install --quiet --no-warn-script-location 'appengine-python-standard' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef get_matching_files(directory: str, pattern: str) -> List[str]:\n    import os\n    import re\n\n    # Compile the regex pattern\n    regex = re.compile(pattern)\n\n    # List to store matching file paths\n    matching_files = []\n\n    # Walk through directory including subdirectories\n    for root, dirs, files in os.walk(directory.replace(\"gs://\", \"/gcs/\")):\n        for file in files:\n            # If file name matches the pattern, add it to the list\n            if regex.match(os.path.join(root, file).replace(directory.replace(\"gs://\", \"/gcs/\"), \"\")):\n                # os.path.join concatenates root, dirs, and file into a full path\n                matching_files.append(os.path.join(root, file))\n\n    # Return the list of matching files\n    return [matching_file.replace(\"/gcs/\", \"gs://\") for matching_file in matching_files]\n\n"
+          ],
+          "image": "python:3.11"
+        }
+      },
+      "exec-parse-text": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "parse_text"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.3.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"'  &&  python3 -m pip install --quiet --no-warn-script-location 'google-cloud-documentai' 'appengine-python-standard' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef parse_text(pdf_file: str) -> str:\n    from google.cloud import documentai\n    from google.api_core.client_options import ClientOptions\n\n    project_id = 'TODO'\n    location = 'us'\n    mime_type = 'application/pdf'\n    processor_id = 'TODO'\n\n    opts = ClientOptions(api_endpoint=f\"{location}-documentai.googleapis.com\")\n    client = documentai.DocumentProcessorServiceClient(client_options=opts)\n    name = client.processor_path(project_id, location, processor_id)\n    with open(pdf_file.replace(\"gs://\", \"/gcs/\"), \"rb\") as image:\n        image_content = image.read()\n    raw_document = documentai.RawDocument(content=image_content, mime_type=mime_type)\n    request = documentai.ProcessRequest(name=name, raw_document=raw_document)\n    result = client.process_document(request=request)\n    document = result.document\n\n    with open(pdf_file.replace(\"gs://\", \"/gcs/\").replace(\".pdf\", \".txt\"), 'w') as file:\n        file.write(document.text)\n    return pdf_file.replace(\".pdf\", \".txt\")\n\n"
+          ],
+          "image": "python:3.11"
+        }
+      },
+      "exec-split-pdf-into-pages": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "split_pdf_into_pages"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.3.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"'  &&  python3 -m pip install --quiet --no-warn-script-location 'pypdf2==2.12.1' 'appengine-python-standard' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef split_pdf_into_pages(pdf_file: str) -> List[str]:\n    import os\n    import PyPDF2\n\n    page_files = []\n\n    # Open the PDF file\n    with open(pdf_file.replace(\"gs://\", \"/gcs/\"), 'rb') as file:\n        # Create a PDF reader object\n        pdf_reader = PyPDF2.PdfFileReader(file)\n\n        # Get the total number of pages in the PDF\n        total_pages = pdf_reader.numPages\n\n        # Iterate through each page and save it as a separate PDF\n        for page_number in range(total_pages):\n            # Get a page\n            pdf_page = pdf_reader.getPage(page_number)\n\n            # Create a PDF writer object\n            pdf_writer = PyPDF2.PdfFileWriter()\n\n            # Add the page to the writer\n            pdf_writer.addPage(pdf_page)\n\n            # Output file name\n            output_file_path = pdf_file.replace(\"gs://\", \"/gcs/\").replace(\".pdf\", \"/\") + \\\n                pdf_file.split(\"/\")[-1].replace(\".pdf\", f\".{page_number + 1}.pdf\")\n\n            # Create the directory if it doesn't exist\n            os.makedirs(\n                os.path.dirname(pdf_file.replace(\"gs://\", \"/gcs/\").replace(\".pdf\", \"/\")),\n                exist_ok=True\n            )\n\n            # Save the page as a PDF file\n            with open(output_file_path, 'wb') as output_file:\n                pdf_writer.write(output_file)\n            page_files.append(output_file_path.replace(\"/gcs/\", \"gs://\"))\n\n    print(f'Successfully split the PDF into {total_pages} pages')\n    return page_files\n\n"
+          ],
+          "image": "python:3.11"
+        }
+      },
+      "exec-write-embeddings": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "write_embeddings"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.3.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"'  &&  python3 -m pip install --quiet --no-warn-script-location 'elasticsearch' 'appengine-python-standard' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef write_embeddings(embedding: Dict):\n    from elasticsearch import Elasticsearch\n\n    # Connect to the Elasticsearch instance\n    es = Elasticsearch(\n        hosts=[\"http://TODO:9200\"],\n        basic_auth=(\"elastic\", \"TODO\")\n    )\n\n    # Name of the index\n    index_name = \"technology_papers_and_reports\"\n\n    # Define the mapping for the index\n    mapping = {\n        \"mappings\": {\n            \"properties\": {\n                \"embedding\": {\n                    \"type\": \"dense_vector\",\n                    \"dims\": 768\n                }\n            }\n        }\n    }\n\n    # Create the index with the mapping\n    es.indices.create(index=index_name, body=mapping, ignore=400)\n\n    # Index the vector embeddings\n    es.index(index=index_name, id=embedding[\"id\"], body={\"embedding\": embedding[\"embedding\"]})\n\n    print(\"Embeddings indexed successfully.\")\n\n"
+          ],
+          "image": "python:3.11"
+        }
+      }
+    }
+  },
+  "pipelineInfo": {
+    "name": "technology-papers-and-reports"
+  },
+  "root": {
+    "dag": {
+      "tasks": {
+        "for-loop-1": {
+          "componentRef": {
+            "name": "comp-for-loop-1"
+          },
+          "dependentTasks": [
+            "get-matching-files"
+          ],
+          "inputs": {
+            "parameters": {
+              "pipelinechannel--get-matching-files-Output": {
+                "taskOutputParameter": {
+                  "outputParameterKey": "Output",
+                  "producerTask": "get-matching-files"
+                }
+              }
+            }
+          },
+          "iteratorPolicy": {
+            "parallelismLimit": 3
+          },
+          "parameterIterator": {
+            "itemInput": "pipelinechannel--get-matching-files-Output-loop-item",
+            "items": {
+              "inputParameter": "pipelinechannel--get-matching-files-Output"
+            }
+          },
+          "taskInfo": {
+            "name": "pdf-parsing"
+          }
+        },
+        "get-matching-files": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-get-matching-files"
+          },
+          "inputs": {
+            "parameters": {
+              "directory": {
+                "componentInputParameter": "gcs_directory"
+              },
+              "pattern": {
+                "runtimeValue": {
+                  "constant": "^[^/]*\\.pdf"
+                }
+              }
+            }
+          },
+          "taskInfo": {
+            "name": "get-matching-files"
+          }
+        }
+      }
+    },
+    "inputDefinitions": {
+      "parameters": {
+        "gcs_directory": {
+          "parameterType": "STRING"
+        }
+      }
+    }
+  },
+  "schemaVersion": "2.1.0",
+  "sdkVersion": "kfp-2.3.0"
+}

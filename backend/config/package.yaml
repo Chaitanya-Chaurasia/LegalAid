@@ -1,0 +1,12 @@
+dependencies: virtualenv
+  firebase_admin
+  Authlib
+  vertexai
+
+GOOGLE_FIREBASE_URL: "https://legalaid-402716-default-rtdb.firebaseio.com/"
+
+GOOGLE_OAUTH_ENV:
+  CLIENT_ID: "195044032993-1eohkc391ob5ltbtflj69rfse2960sn5.apps.googleusercontent.com"
+  CLIENT_SECRET: "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"
+
+GOOGLE_MAPS_API_KEY: AIzaSyAuKmIFMY5dyOJJKlpyjG4vIGNpr8dPL_w
