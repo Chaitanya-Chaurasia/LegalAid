@@ -25,3 +25,4 @@ export function useTypingEffect(textToType, interKeyStrokeDurationInMs) {
 
   return textToType.substring(0, currentPosition);
 }
+export default useTypingEffect;
