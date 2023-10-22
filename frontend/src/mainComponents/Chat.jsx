@@ -1,4 +1,6 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Input, Center } from "@chakra-ui/react";
+import Response from "../chatComponents/Response";
+import Messages from "../chatComponents/Messages";
 
 function Chat(){
     return(
@@ -7,15 +9,18 @@ function Chat(){
             height={'95%'}
             backgroundColor={'#E0E0E0'}
             borderRadius={'20px'}
-            p={'20px'}
+            p={'30px'}
             display={'flex'}
             flexDirection={'column'}>
-            <Flex height={'calc(100% - 70px)'} width={'100%'}>
-
+            <Flex height={'calc(100% - 60px)'} width={'100%'} flexDir={'column'} overflowY={'scroll'} gap={'10px'} pr={'15px'}>
+                <Messages/>
+                <Response/>
+                <Response/>
+                <Response/>
             </Flex>
-            <Flex height={'70px'} width={'100%'} backgroundColor={'red'}>
-
-            </Flex>
+            <Center height={'60px'} width={'100%'}>
+                <Input placeholder='Basic usage' backgroundColor={'#F0F0F0'}/>
+            </Center>
         </Flex>
     )
 }

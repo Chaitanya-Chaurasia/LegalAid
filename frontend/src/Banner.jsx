@@ -11,10 +11,10 @@ function Banner(){
             </Flex>
             <Image src={Logo} alt="LegalAid Logo" height={'60px'}/>
             <Flex alignItems={'flex-end'}>
-                <Heading size="3xl" fontWeight={'Bold'} as={'h1'}>L</Heading>
-                <Heading size="2xl" fontWeight={'Bold'} >EGAL</Heading>
-                <Heading size="3xl" fontWeight={'Bold'} color={'#213A83'}>AI</Heading>
-                <Heading size="2xl" fontWeight={'Bold'}>D</Heading>
+                <Heading size="3xl" fontWeight={'bold'} as={'h1'}>L</Heading>
+                <Heading size="2xl" fontWeight={'bold'} style={{ margin: '1px 0' }}>EGAL</Heading>
+                <Heading size="3xl" fontWeight={'bold'} color={'#213A83'}>AI</Heading>
+                <Heading size="2xl" fontWeight={'bold'} style={{ margin: '1px 0' }}>D</Heading>
             </Flex>
             <SettingsIcon position={'absolute'} right={'35px'}  boxSize={'25px'}/>
         </Center>
