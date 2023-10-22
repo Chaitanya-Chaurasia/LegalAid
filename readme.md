@@ -93,7 +93,7 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
   <img src="assets/Screenshot 2023-10-22 070532.png" alt="Hard Pic" width="50%">
 </div>
 
-- **And fwinally, our WebApp 🎉🙌🥳**:
+- **And finally, our WebApp 🎉🙌🥳**:
 <div style="display: flex; justify-content: center;">
   <img src="assets/image.png" alt="Hard Pic" width="50%">
 </div>
