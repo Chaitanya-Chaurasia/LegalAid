@@ -104,4 +104,5 @@ _**In order from left to right**_
 <div style="display: flex; justify-content: center;">
   <img src="assets/hardpic.jpeg" alt="Hard Pic" width="50%">
 </div>
+
 _**Ramiro Garza, Adolfo Gonzalez, David J. Malan (not in the team, just in the picture), Daniel Chen, Chaitanya Chaurasia**_
