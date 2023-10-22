@@ -7,7 +7,14 @@ function History() {
       <Center h={'80px'}>
         <Heading size='lg' fontWeight={'medium'}>History</Heading>
       </Center>
-      <Flex flex={1}  alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} maxHeight={'calc(100% - 80px)'}>
+      <Flex flex={1}  alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} maxHeight={'calc(100% - 80px)'} gap={'5px'}>
+        <Story/>        
+        <Story/>        
+        <Story/>        
+        <Story/>        
+        <Story/>        
+        <Story/>        
+        <Story/>        
         <Story/>        
       </Flex>
     </Flex>

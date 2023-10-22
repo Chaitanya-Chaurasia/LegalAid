@@ -2,7 +2,7 @@ import  { Flex, Text }  from "@chakra-ui/react";
 
 function Story(){
     return(
-        <Flex width={'80%'} minHeight={'40px'}
+        <Flex width={'90%'} minHeight={'40px'}
         backgroundColor={'#E0E0E0'}
         borderRadius={'15px'}
         alignItems={'center'}

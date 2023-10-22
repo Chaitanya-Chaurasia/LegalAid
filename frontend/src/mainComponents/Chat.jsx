@@ -10,10 +10,13 @@ function Chat(){
             backgroundColor={'#E0E0E0'}
             borderRadius={'20px'}
             p={'30px'}
+            pr={'15px'}
             display={'flex'}
             flexDirection={'column'}>
-            <Flex height={'calc(100% - 60px)'} width={'100%'} flexDir={'column'} overflowY={'scroll'} gap={'10px'} pr={'15px'}>
+            <Flex height={'calc(100% - 60px)'} width={'100%'} flexDir={'column'} overflowY={'scroll'} gap={'15px'} pr={'15px'}>
                 <Messages/>
+                <Response/>
+                <Response/>
                 <Response/>
                 <Response/>
                 <Response/>
