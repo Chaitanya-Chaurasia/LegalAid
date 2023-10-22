@@ -41,6 +41,41 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 
 - **Recommended Legal Attorneys with Google Maps API**: LegalAId goes a step further by recommending experienced legal attorneys along with their location, leveraging the Google Maps API to provide users with the best possible service for their case.
 
+## How to Run this WebApp:
+
+## Installation and Usage
+
+1. **Clone the Repository**:
+   - Command: `git clone <repository_URL>`
+   - Description: Retrieve a copy of the project from the specified Git repository.
+
+2. **Install Dependencies**:
+   - Command: `npm i`
+   - Description: Use Node Package Manager (npm) to install all required project dependencies.
+
+3. **Run Backend Server**:
+   - Command: `cd backend; python3 app.py`
+   - Description: Navigate to the backend directory and execute the Flask application using Python 3. Ensure that any occurrences of `python` in `app.py` are replaced with `python3`.
+
+4. **Install Backend Dependencies**:
+   - Command: `cd backend; python3 app.py`
+   - Description: This command, executed in the backend directory, installs all necessary backend dependencies.
+
+5. **Run Frontend Development Server**:
+   - Command: `cd frontend; npm run dev`
+   - Description: Navigate to the frontend directory and initiate the development server using npm.
+
+6. **Access the Application**:
+   - Description: Open a web browser and go to `localhost:<port_number>` (replace `<port_number>` with the specified port) to access the application.
+
+7. **Follow Guidelines**:
+   - Description: Refer to the provided guidelines or instructions for further usage.
+
+8. **Login using Google OAuth (Optional)**:
+   - Description: Optionally, you can choose to log in using Google OAuth for enhanced authentication and user experience. Follow the relevant prompts or instructions provided within the application.
+
+
+
 ## Our results
 
 - **API Metrics**:
