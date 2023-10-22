@@ -1,5 +1,6 @@
-import { Center, Heading, Image, Flex, Text } from "@chakra-ui/react";
+import { Center, Heading, Image, Flex, Text, Button } from "@chakra-ui/react";
 import Logo from "./assets/balance.png";
+import google from "./assets/google.png";
 
 function Banner({ username }) {
   return (
@@ -10,11 +11,12 @@ function Banner({ username }) {
           fontStyle={"italic"}
           fontWeight={"bold"}
           fontSize={"20px"}
-        >
-          Hello
-        </Text>
+        ></Text>
         <Text fontStyle={"italic"} fontSize={"20px"}>
-          {username}
+          <Button colorScheme="whiteAlpha" textColor={"#101010"}>
+            <Image src={google} h={"30px"} pr={"10px"} />
+            Log-in with Google
+          </Button>
         </Text>
       </Flex>
       <Image src={Logo} alt="LegalAid Logo" height={"60px"} />
