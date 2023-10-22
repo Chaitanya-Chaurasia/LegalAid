@@ -16,7 +16,7 @@ function Response({ message }) {
       <Flex
         p={"20px"}
         backgroundColor={"#4A4A4A"}
-        maxWidth={"60%"}
+        maxWidth={"80%"}
         borderRadius={"30px 30px 30px 0"}
       >
         <Text textColor={"#F0F0F0"} fontSize={"15px"}>
