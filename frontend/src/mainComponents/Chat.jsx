@@ -1,4 +1,4 @@
-import { Flex, Input, Center } from "@chakra-ui/react";
+import { Flex, Input, Center, Spinner } from "@chakra-ui/react";
 import Response from "../chatComponents/Response";
 import { useState } from "react";
 import axios from "axios";
