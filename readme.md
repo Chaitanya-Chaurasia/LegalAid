@@ -32,7 +32,3 @@ LegalAId is an AI-powered legal assistant with a mission to organize the world's
 
 LegalAId has the potential to impact a large number of lives. We believe that everyone deserves to know their rights and have access to the legal assistance they need. Our platform is dedicated to making legal information accessible, ensuring that individuals can navigate their legal situations with confidence.
 
-For more information, visit our website at [LegalAId.com](https://www.legalaid.com).
-
-Mission Statement
-LegalAId has the potential to impact a large number of lives. We believe that everyone deserves to know their rights and have access to the legal assistance they need. Our platform is dedicated to making legal information accessible, ensuring that individuals can navigate their legal situations with confidence.
