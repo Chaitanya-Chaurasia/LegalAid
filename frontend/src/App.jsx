@@ -7,7 +7,8 @@ function App() {
   return (
     <Box backgroundColor={"#F0F0F0"} h={'100vh'} minWidth={'1200px'}>
       <Banner />
-      <Login />
+      <Body />
+
     </Box>
   )
 }
