@@ -43,22 +43,22 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 
 ## Our results
 
-API Metrics
+- **API Metrics**:
 <div style="display: flex; justify-content: center;">
   <img src="assets/Screenshot 2023-10-22 070353.png" alt="Hard Pic" width="50%">
 </div>
 
-Elastic Search Cluster
+- **Elastic Search on Kubernetes Engine**:
 <div style="display: flex; justify-content: center;">
   <img src="assets/Screenshot 2023-10-22 070458.png" alt="Hard Pic" width="50%">
 </div>
 
-Buckets
+- **Setting Up Buckets in GCP for Storage of Dataset**:
 <div style="display: flex; justify-content: center;">
   <img src="assets/Screenshot 2023-10-22 070532.png" alt="Hard Pic" width="50%">
 </div>
 
-App
+- **And fwinally, our WebApp 🎉🙌🥳**:
 <div style="display: flex; justify-content: center;">
   <img src="assets/image.png" alt="Hard Pic" width="50%">
 </div>
