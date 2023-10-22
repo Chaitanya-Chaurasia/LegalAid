@@ -112,7 +112,7 @@ def generate_text_route():
 
     vertexai.init(project="legalaid-402716", location="us-central1")
     parameters = {
-        "max_output_tokens": 1024,
+        "max_output_tokens": 640,
         "temperature": 0.5,
         "top_p": 0.8,
         "top_k": 40
