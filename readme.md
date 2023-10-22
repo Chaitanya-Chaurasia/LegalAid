@@ -1,4 +1,5 @@
-# LegalAId: Your AI Legal Assistant
+# LegalAId
+_**Your AI Legal Assistant**_
 
 LegalAId is an AI-powered legal assistant with a mission to organize the world's information and make it universally accessible. Our goal is to provide fast and efficient access to legal aid, ensuring that people have the information they need to understand and assert their rights. It's important to note that LegalAId is designed to guide users in the right direction and complement the work of legal professionals, not replace them. 
 
@@ -35,3 +36,11 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 - **Classification Models for Legal Situations**: Using Google Vertex AI, we employ classification models to understand the exact laws most relevant to the user's situation and identify the human rights most affected by the incident. This information forms the basis for LegalAId's recommendations.
 
 - **Recommended Legal Attorneys with Google Maps API**: LegalAId goes a step further by recommending experienced legal attorneys along with their location, leveraging the Google Maps API to provide users with the best possible service for their case.
+
+## Our results
+
+
+## Meet the team
+_**In order from left to right**_
+
+_**Ramiro Garza, Adolfo Gonzalez, David J. Malan (not in the team, just in the picture), Daniel Chen, Chaitanya Chaurasia**_
