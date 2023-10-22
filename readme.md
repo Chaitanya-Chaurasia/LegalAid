@@ -42,10 +42,26 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 - **Recommended Legal Attorneys with Google Maps API**: LegalAId goes a step further by recommending experienced legal attorneys along with their location, leveraging the Google Maps API to provide users with the best possible service for their case.
 
 ## Our results
+
+API Metrics
 <div style="display: flex; justify-content: center;">
-  <img src="=assets/Screenshot 2023-10-22 070353.png" alt="Hard Pic" width="50%">
+  <img src="assets/Screenshot 2023-10-22 070353.png" alt="Hard Pic" width="50%">
 </div>
-  
+
+Elastic Search Cluster
+<div style="display: flex; justify-content: center;">
+  <img src="assets/Screenshot 2023-10-22 070458.png" alt="Hard Pic" width="50%">
+</div>
+
+Buckets
+<div style="display: flex; justify-content: center;">
+  <img src="assets/Screenshot 2023-10-22 070532.png" alt="Hard Pic" width="50%">
+</div>
+
+App
+<div style="display: flex; justify-content: center;">
+  <img src="assets/image.png" alt="Hard Pic" width="50%">
+</div>
 
 
 ## Meet the team
