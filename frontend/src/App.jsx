@@ -1,26 +1,15 @@
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { useMemo } from "react";
-import "./App.css";
+import Banner from './Banner.jsx'
+import { Box } from '@chakra-ui/react'
+import Body from './Body.jsx'
+import Login from './Login.jsx'
 
-const App = () => {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAuKmIFMY5dyOJJKlpyjG4vIGNpr8dPL_w",
-  });
-
-  const google = window.google;
-  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
-
+function App() {
   return (
-    <div className="App">
-      <GoogleMap
-        mapContainerClassName="map-container"
-        center={center}
-        zoom={10}
-      >
-        <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
-      </GoogleMap>
-    </div>
-  );
-};
+    <Box backgroundColor={"#F0F0F0"} h={'100vh'} minWidth={'1200px'}>
+      <Banner />
+      <Login />
+    </Box>
+  )
+}
 
-export default App;
+export default App

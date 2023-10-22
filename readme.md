@@ -1,13 +1,17 @@
-# LegalAId: Your AI Legal Assistant
+# LegalAId
+_**Your AI Legal Assistant**_
 
 LegalAId is an AI-powered legal assistant with a mission to organize the world's information and make it universally accessible. Our goal is to provide fast and efficient access to legal aid, ensuring that people have the information they need to understand and assert their rights. It's important to note that LegalAId is designed to guide users in the right direction and complement the work of legal professionals, not replace them. 
-
 
 ## Mission Statement
 
 LegalAId has the potential to impact a large number of lives. We believe that everyone deserves to know their rights and have access to the legal assistance they need. Our platform is dedicated to making legal information accessible, ensuring that individuals can navigate their legal situations with confidence.
 
 ☁️ **LegalAId was made possible thanks to Google Cloud** ☁️
+
+  <div style="display: flex; justify-content: center;">
+  <img src="assets/gcp.png" alt="LegalAId Logo" width="50%">
+  </div>
 
 ## Key Features
 
@@ -33,4 +37,10 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 
 - **Recommended Legal Attorneys with Google Maps API**: LegalAId goes a step further by recommending experienced legal attorneys along with their location, leveraging the Google Maps API to provide users with the best possible service for their case.
 
+## Our results
 
+
+## Meet the team
+_**In order from left to right**_
+
+_**Ramiro Garza, Adolfo Gonzalez, David J. Malan (not in the team, just in the picture), Daniel Chen, Chaitanya Chaurasia**_
