@@ -12,11 +12,11 @@ function Actions(){
                     <Text>2. Ask for a lawyer</Text>
                     
             </Flex>
-            <Flex flex={1} alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} gap={'5px'}>
+            <Flex flex={2} alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} gap={'5px'}>
                     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
                     
             </Flex>
-            <Flex flex={1} alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} gap={'5px'}>
+            <Flex flex={2} alignItems={'center'} flexDirection={'column'} overflowY={'scroll'} p={'10px'} gap={'5px'}>
                     <Law/>
                     <Law/>
             </Flex>

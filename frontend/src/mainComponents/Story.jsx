@@ -1,6 +1,7 @@
 import  { Flex, Text }  from "@chakra-ui/react";
 
-function Story(){
+function Story(props){
+    const st=props.st;
     return(
         <Flex width={'90%'} minHeight={'40px'}
         backgroundColor={'#E0E0E0'}
@@ -9,7 +10,7 @@ function Story(){
         justifyContent={'center'}
         border={'1px' + ' solid ' + '#F0F0F0'}
         _hover={{backgroundColor: '#F0F0F0'}}>
-            <Text fontSize={'15px'}>Hit and run</Text>
+            <Text fontSize={'14px'}>{st}</Text>
         </Flex>
     );
 }
