@@ -7,7 +7,6 @@ import axios from "axios";
 function App() {
   const googleAuthenticate = async () => {
     try {
-      
       req = await axios.get("127.0.0.1:80/login");
 
       console.log(req);
