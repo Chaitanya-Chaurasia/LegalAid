@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { useMemo } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAuKmIFMY5dyOJJKlpyjG4vIGNpr8dPL_w",
+  });
+
+  const google = window.google;
+  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="App">
+      <GoogleMap
+        mapContainerClassName="map-container"
+        center={center}
+        zoom={10}
+      >
+        <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
+      </GoogleMap>
+    </div>
+  );
+};
 
-export default App
+export default App;
