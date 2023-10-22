@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.py",
   "scripts": {
-    "test": "python /backend/app.py"
+    "test": "python3 /backend/app.py"
   },
   "author": "",
   "license": "ISC"

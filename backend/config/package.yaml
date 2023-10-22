@@ -2,6 +2,7 @@ dependencies: virtualenv
   firebase_admin
   Authlib
   vertexai
+  google_auth_oauthlib
 
 GOOGLE_FIREBASE_URL: "https://legalaid-402716-default-rtdb.firebaseio.com/"
 
