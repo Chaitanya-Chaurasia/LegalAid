@@ -3,6 +3,10 @@ _**Your AI Legal Assistant**_
 
 LegalAId is an AI-powered legal assistant with a mission to organize the world's information and make it universally accessible. Our goal is to provide fast and efficient access to legal aid, ensuring that people have the information they need to understand and assert their rights. It's important to note that LegalAId is designed to guide users in the right direction and complement the work of legal professionals, not replace them. 
 
+<div style="display: flex; justify-content: center;">
+  <img src="balance/gcp.png" alt="LegalAId Logo" width="50%">
+</div>
+
 ## Mission Statement
 
 LegalAId has the potential to impact a large number of lives. We believe that everyone deserves to know their rights and have access to the legal assistance they need. Our platform is dedicated to making legal information accessible, ensuring that individuals can navigate their legal situations with confidence.
@@ -10,7 +14,7 @@ LegalAId has the potential to impact a large number of lives. We believe that ev
 ☁️ **LegalAId was made possible thanks to Google Cloud** ☁️
 
   <div style="display: flex; justify-content: center;">
-  <img src="assets/gcp.png" alt="LegalAId Logo" width="50%">
+  <img src="assets/gcp.png" alt="GCP Logo" width="50%">
   </div>
 
 ## Key Features
