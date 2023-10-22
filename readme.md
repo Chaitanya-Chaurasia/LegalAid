@@ -7,7 +7,9 @@ LegalAId is an AI-powered legal assistant with a mission to organize the world's
 LegalAId has the potential to impact a large number of lives. We believe that everyone deserves to know their rights and have access to the legal assistance they need. Our platform is dedicated to making legal information accessible, ensuring that individuals can navigate their legal situations with confidence.
 
 ☁️ **LegalAId was made possible thanks to Google Cloud** ☁️
-<img src="assets/gcp.png" alt="LegalAId Logo" width="50%">
+
+![LegalAId Logo](assets/gcp.png){width=50%}
+
 ## Key Features
 
 - **Custom-Trained Google Cloud PaLM Model**: Our platform begins with a custom-trained Google Cloud PaLM model, which is trained with legal data specific to the user's country and state.
