@@ -1,6 +1,4 @@
 import os, yaml
-import pathlib
-
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
